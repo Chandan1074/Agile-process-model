@@ -1,0 +1,31 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Generate sample data
+np.random.seed(0)
+time = np.arange(0, 100, 1)
+temperature = np.random.rand(100) * 10 + 10
+
+# Create a DataFrame
+df = pd.DataFrame({'Time': time, 'Temperature': temperature})
+
+# Define the quadratic equation
+def quadratic_equation(x, a, b, c):
+    return a * x**2 + b * x + c
+
+# Define the coefficients
+a = 0.1
+b = 0.5
+c = 10
+
+# Create a new column with the predicted temperature
+df['Predicted Temperature'] = quadratic_equation(df['Time'], a, b, c)
+
+# Plot the actual and predicted temperature
+plt.plot(df['Time'], df['Temperature'], label='Actual Temperature')
+plt.plot(df['Time'], df['Predicted Temperature'], label='Predicted Temperature')
+plt.xlabel('Time')
+plt.ylabel('Temperature')
+plt.legend()
+plt.show()
